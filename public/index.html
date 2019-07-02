@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+     
+    </head>
+<body>
+
+<h2>Add Book Forms</h2>
+
+<form id="book-form" action="/newbook" method="POST">
+  Book name:<br>
+  <input type="text" id="book-name" name="bookname" placeholder="The Alchameist">
+  <br>
+  <input type="submit" value="Submit">
+</form> 
+
+<div class="book-list" id="books-list">
+        <!-- <script id="book-template" type="text/x-template">
+            <div class="book-info">
+                <div class="row">
+                      <div class="name">{{bookname}}</div>
+                 </div>
+             </div>
+         </script> -->
+    </div>
+    <script src='https://code.jquery.com/jquery-2.2.1.min.js', integrity='sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=', crossorigin='anonymous'></script>
+<script src='./client.js'></script>
+</body>
+</html>

@@ -46,6 +46,7 @@ app.get('/allbooks',(req,res)=>{
 app.post('/newbook',(req,res)=>{
     // console.log(req.body);
     console.log("Post wala call hua h");
+    console.log(req.body)
     let bookdetail = {Name : req.body.bookname, Price : 122};
     let sql = 'INSERT INTO `books name` SET ?';
     let query = db.query(sql, bookdetail, (err, result) => {

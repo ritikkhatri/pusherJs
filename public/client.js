@@ -41,17 +41,25 @@ bookForm.addEventListener("submit", addNewBook);
       "bookname": document.getElementById('book-name').value,
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", serverUrl+"newbook", true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState != 4 || xhr.status != 200) return;
+    fetch("http://localhost:3000/newbook",{
+      method : 'post',
+      body: JSON.stringify(newBook)
+    })
+    .then(resp=>resp.json)
+    .then(json=>{
+      console.log("Sab shi hi h")
+    })
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", serverUrl+"newbook", true);
+    // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState != 4 || xhr.status != 200) return;
 
-      // On Success of creating a new book
-      console.log("Success: " + xhr.responseText);
-      bookForm.reset();
-    };
-    xhr.send(JSON.stringify(newBook));
+    //   // On Success of creating a new book
+    //   console.log("Success: " + xhr.responseText);
+    //   bookForm.reset();
+    // };
+    // xhr.send(JSON.stringify(newBook));
 }
 
 channel.bind('new_book', (data)=> {

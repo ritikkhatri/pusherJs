@@ -1,18 +1,3 @@
-// var pusher = new Pusher("d07e09c9e0e3313e681d", {
-//     cluster: 'ap2'
-//   });
-//   Pusher.logToConsole = true;
-// var channel = pusher.subscribe('Lib-books');
-// channel.bind('pusher:subscription_succeeded', function(members) {
-//     alert('successfully subscribed!');
-// });
-        // channel.bind('new_book', function(data) {
-        //     if(data){
-        //     alert('An event was triggered with message: ')};
-        //   });
-
-
-    // Enable pusher logging - don't include this in production
     Pusher.logToConsole = false;
 
     
@@ -20,7 +5,6 @@
           cluster: 'ap2',
           encrypted: true
         });
-        // Subscribing to the 'flash-comments' Channel
    
 
 fetch("http://localhost:3000/allbooks")
@@ -40,26 +24,16 @@ bookForm.addEventListener("submit", addNewBook);
     var newBook = {
       "bookname": document.getElementById('book-name').value,
     }
-
+    
     fetch("http://localhost:3000/newbook",{
       method : 'post',
-      body: JSON.stringify(newBook)
+      headers: {
+        'Content-Type': 'application/json',
+    },
+      body :JSON.stringify(newBook)
     })
-    .then(resp=>resp.json)
-    .then(json=>{
-      console.log("Sab shi hi h")
-    })
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", serverUrl+"newbook", true);
-    // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    // xhr.onreadystatechange = function () {
-    //   if (xhr.readyState != 4 || xhr.status != 200) return;
-
-    //   // On Success of creating a new book
-    //   console.log("Success: " + xhr.responseText);
-    //   bookForm.reset();
-    // };
-    // xhr.send(JSON.stringify(newBook));
+    .then(resp=>resp.json())
+    
 }
 
 channel.bind('new_book', (data)=> {
